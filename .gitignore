@@ -1,4 +1,9 @@
+tools/
+tools
+mysqldumper/
+mysqldumper
 .c9/
 .c9
 adminer.php
 database.class.php
+signature*
