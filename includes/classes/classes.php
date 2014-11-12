@@ -9,6 +9,7 @@
 session_start();
 require_once 'database.class.php';
 require_once 'general.class.php';
+require_once 'error.class.php';
 require_once 'view.class.php';
 require_once 'user.class.php';
 require_once 'groups.class.php';

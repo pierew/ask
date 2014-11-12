@@ -13,8 +13,8 @@ function checkUserLogin($user,$password) {
     if ($result['password'] == $encrypted_password) {
         $_SESSION['login'] = 'true';
         $_SESSION['username'] = $user;
-        $_SESSION['role'] = $result['role'];
-        $_SESSION['group'] = $result['group'];
+        $_SESSION['role'] = getRoleName($result['ask_roles_idask_roles']);
+        $_SESSION['group'] = getGroupName($result['ask_group_idask_group']);
         header('Location: index.php');
     } else {
         $_SESSION['login'] = 'false';

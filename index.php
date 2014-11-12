@@ -8,3 +8,8 @@
 */
 include_once './includes/classes/classes.php';
 checkLogin();
+displayError($type,$reason);
+include_once './theme/header.php';
+include_once './theme/content.php';
+include_once './theme/footer.php';
+?>
