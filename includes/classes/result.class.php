@@ -6,6 +6,8 @@
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
+
+
 function getResultOfQuestion($qid) {
     $result = queryDB("SELECT * FROM ask_result JOIN ask_question ON idask_question=ask_question_idask_question WHERE ask_question.idask_question='$qid';");
     return $result;

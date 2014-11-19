@@ -6,71 +6,79 @@
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
-function getUserID($username) {
-    $result = queryDB("SELECT idask_user FROM ask_user WHERE username='$username'");
-    return $result['idask_user']
+function getUserList() {
+    $result = queryDB_RAW("SELECT * FROM ask_user ORDER BY ask_group_idask_group ASC;");
+    $data = array();
+    while($row = mysqli_fetch_assoc($result)){
+    array_push($data, $row);
+    }
+    return $data;
 }
 
-function getUserGroup($username) {
-    $result = queryDB("SELECT ask_group.name FROM ask_user JOIN ask_group ON ask_user.ask_group_idask_group=ask_group.idask_group WHERE ask_user.username = '$username';");
-    return $result['ask_group.name'];
+function getUserName($uid) {
+    $result = queryDB("SELECT username FROM ask_user WHERE idask_user='$uid';");
+    return $result['username'];
+}
+function getUserGroupID($uid) {
+    $result = queryDB("SELECT ask_group_idask_group FROM ask_user where idask_user = '$uid';");
+    return $result['ask_group_idask_group'];
 }
 
-function getUserRole($username) {
-    $result = queryDB("SELECT ask_roles.name FROM ask_user JOIN ask_roles ON ask_user.ask_roles_idask_roles=ask_roles.idask_roles WHERE ask_user.username = '$username';");
-    return $result['ask_roles.name'];
+function getUserRoleID($uid) {
+    $result = queryDB("SELECT ask_roles_idask_roles FROM ask_user WHERE idask_user = '$uid';");
+    return $result['ask_roles_idask_roles'];
 }
 
-function setPassword($username,$password) {
-    queryDB("UPDATE ask_user SET password='$password' WHERE username='$username';");
+function setPassword($uid,$password) {
+    queryDB("UPDATE ask_user SET password='$password' WHERE idask_user='$uid';");
 }
 
-function setUsername($username,$newusername) {
-    queryDB("UPDATE ask_user SET username='$username' WHERE username='$username';");
+function setUsername($uid,$username) {
+    queryDB("UPDATE ask_user SET username='$username' WHERE idask_user='$uid';");
 }
 
-function activateUser($username) {
-    queryDB("UPDATE ask_user SET status='1' WHERE username='$username';");
+function activateUser($uid) {
+    queryDB("UPDATE ask_user SET status='1' WHERE idask_user='$uid';");
 }
 
-function deactivateUser($username) {
-    queryDB("UPDATE ask_user SET status='0' WHERE username='$username';");
+function deactivateUser($uid) {
+    queryDB("UPDATE ask_user SET status='0' WHERE idask_user='$uid';");
 }
 
-function deleteUser($username) {
-    queryDB("DELETE FROM ask_user WHERE username='$username';");
+function deleteUser($uid) {
+    queryDB("DELETE FROM ask_user WHERE idask_user='$uid';");
 }
 
-function setUserRole($username,$role) {
+function setUserRole($uid,$role) {
     $roleid = getRoleID($role);
-    queryDB("UPDATE ask_user SET ask_roles_idask_roles='$roleid' WHERE username='$username';");
+    queryDB("UPDATE ask_user SET ask_roles_idask_roles='$roleid' WHERE idask_user='$uid';");
 }
 
-function changeGroup($username,$group) {
+function changeGroup($uid,$group) {
     $groupid = getGroupID($role);
-    queryDB("UPDATE ask_user SET ask_group_idask_group='$groupid' WHERE username='$username';");
+    queryDB("UPDATE ask_user SET ask_group_idask_group='$groupid' WHERE idask_user='$uid';");
 }
 
-function addUser($usernamename,$password,$roleid,$groupid) {
-    queryDB('INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ("$usernamename","$password","$roleid","$groupid");'):
+function addUser($uidname,$password,$roleid,$groupid) {
+    queryDB('INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ("$username","$password","$roleid","$groupid");');
 }
 
 function autoCreateUser($amount,$gid) {
     $getGroupName = queryDB("SELECT name FROM ask_group WHERE idask_group = '$gid';");
     $group = $getGroupName['name'];
     for ($i = 1;$i == $amount;$i++) {
-        $usernamename = $group. '_' . (rand()*time());
+        $uidname = $group. '_' . (rand()*time());
         $password = md5(generate_password());
-        addUser($usernamename,$password,'3',$gid);
+        addUser($uidname,$password,'3',$gid);
     }
 }
 
 function getRoleID($rolename) {
-    $result = queryDB("SELECT idask_roles WHERE name='$rolename';");
+    $result = queryDB("SELECT idask_roles FROM ask_roles WHERE name='$rolename';");
     return $result['idask_roles'];
 }
 
 function getRoleName($rid) {
-    $result = queryDB("SELECT name WHERE idask_roles='$rid';");
+    $result = queryDB("SELECT name FROM ask_roles WHERE idask_roles='$rid';");
     return $result['name'];
 }

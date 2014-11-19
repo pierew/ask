@@ -7,6 +7,11 @@
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
 include_once './includes/classes/classes.php';
+if (isset($_GET['message_type']) && isset($_GET['message_reason'])) {
+$type = $_GET['message_type'];
+$reason = $_GET['message_reason'];
+displayMessage($type,$reason);
+}
 if(isset($_POST['username']) && isset($_POST['password'])) {
     checkUserLogin($_POST['username'],$_POST['password']);
 }

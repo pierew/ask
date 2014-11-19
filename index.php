@@ -8,7 +8,13 @@
 */
 include_once './includes/classes/classes.php';
 checkLogin();
-displayError($type,$reason);
+
+if (isset($_GET['message_type']) && isset($_GET['message_reason'])) {
+$type = $_GET['message_type'];
+$reason = $_GET['message_reason'];
+displayMessage($type,$reason);
+}
+
 include_once './theme/header.php';
 include_once './theme/content.php';
 include_once './theme/footer.php';

@@ -6,6 +6,15 @@
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
+function getGroupList() {
+    $result = queryDB_RAW("SELECT * FROM ask_group;");
+    $data = array();
+    while($row = mysqli_fetch_assoc($result)){
+    array_push($data, $row);
+    }
+    return $data;
+}
+
 function getGroupMember($group) {
     $gid = getGroupID($group);
     $result = queryDB("SELECT * FROM ask_user WHERE ask_group_idask_group='$gid';");
