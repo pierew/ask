@@ -59,13 +59,12 @@ function changeGroup($uid,$group) {
     queryDB("UPDATE ask_user SET ask_group_idask_group='$groupid' WHERE idask_user='$uid';");
 }
 
-function addUser($uidname,$password,$roleid,$groupid) {
+function addUser($username,$password,$roleid,$groupid) {
     queryDB('INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ("$username","$password","$roleid","$groupid");');
 }
 
 function autoCreateUser($amount,$gid) {
-    $getGroupName = queryDB("SELECT name FROM ask_group WHERE idask_group = '$gid';");
-    $group = $getGroupName['name'];
+    $group = getGroupName($gid);
     for ($i = 1;$i == $amount;$i++) {
         $uidname = $group. '_' . (rand()*time());
         $password = md5(generate_password());

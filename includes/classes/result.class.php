@@ -24,3 +24,6 @@ function getResultOfGroup($groupname) {
     return $result;
 }
 
+function resetResults() {
+    queryDB("DELETE * FROM ask_result;");
+}

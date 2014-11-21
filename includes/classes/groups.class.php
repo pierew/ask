@@ -26,8 +26,8 @@ function getGroupMemberNumber($group) {
     return $result;
 }
 
-function setGroupName($group,$newgroupname) {
-    queryDB("UPDATE ask_group SET name='$newgroupname' WHERE name='$group'");
+function setGroupName($gid,$newgroupname) {
+    queryDB("UPDATE ask_group SET name='$newgroupname' WHERE idask_group='$gid'");
 }
 
 function deleteGroup($groupname) {

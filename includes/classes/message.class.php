@@ -50,13 +50,13 @@ function displayMessage($type,$reason) {
                     echo "Der Benutzer wurde erfolgreich Hinzugef&uuml;gt";
                     break;
                 case "successfull-group":
-                    echo "Die Gruppe wurde erfolgreich Hinzugef&ouml;gt";
+                    echo "Die Gruppe wurde erfolgreich Hinzugef&uuml;gt";
                     break;
                 case "successfull-question":
-                    echo "Die These wurde erfolgreich Hinzugef&ouml;gt";
+                    echo "Die These wurde erfolgreich Hinzugef&uuml;gt";
                     break;
                 case "successfull-user-to-group":
-                    echo "Der Benutzer wurde erfolgreich der Gruppe Hinzugef&ouml;gt";
+                    echo "Der Benutzer wurde erfolgreich der Gruppe Hinzugef&uuml;gt";
             } 
             
             break;

@@ -29,3 +29,7 @@ $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*
 $password = substr( str_shuffle( $chars ), 0, $length );
 return $password;
 }
+
+function updateSystem($item,$value) {
+    queryDB("UPDATE ask_shortcodes SET text='$value' WHERE name='$item';");
+}

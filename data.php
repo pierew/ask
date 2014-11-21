@@ -46,6 +46,14 @@ if (isset($_GET['type'])) {
                     break;
             }
             break;
+        case "results":
+            switch ($action) {
+                case "reset":
+                    resetResults();
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=results">';
+                    break;
+            }
+            break;
     }
 }
 
@@ -60,21 +68,55 @@ if (isset($_POST['type'])) {
                     break;
             }
             break;
+        case "question":
+            switch ($action) {
+                case "new":
+                    addQuestion($_POST['newquestion']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=survey-control&message_type=add&message_reason=successfull-question">';
+                    break;
+                case "change":
+                    changeQuestion($_POST['item'],$_POST['changequestion']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=survey-control&message_type=change&message_reason=successfull-question">';
+                    break;
+                
+            }
+            break;
         case "user":
             switch ($action) {
-                case "":
+                case "new":
+                    addUser($_POST['username'],md5($_POST['password']),$_POST['role'],$_POST['group']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=user-control&message_type=add&message_reason=successfull-user">';
+                    break;
+                case "change":
+                    setUsername($_POST['item'],$_POST['username']);
+                    setPassword($_POST['item'],md5($_POST['password']));
+                    changeGroup($_POST['item'],$_POST['group']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=user-control&message_type=change&message_reason=successfull-user">';
+                    break;
+                case "generate":
+                    autoCreateUser($_POST['amount'],$_POST['group']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=user-control">';
                     break;
             }
             break;
         case "group":
             switch ($action) {
-                case "":
+                case "new":
+                    addGroup($_POST['newgroup']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=group-control&message_type=add&message_reason=successfull-group">';
+                    break;
+                case "change":
+                    setGroupName($_POST['item'],$_POST['changedgroup']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=group-control&message_type=change&message_reason=successfull-group">';
                     break;
             }
             break;
         case "system":
             switch ($action) {
-                case "":
+                case "change":
+                    updateSystem('title',$_POST['title']);
+                    updateSystem('systemroot',$_POST['systemroot']);
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=system-control">';
                     break;
             }
             break;

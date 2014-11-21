@@ -58,7 +58,7 @@ function getAdminView($type, $category, $action, $item) {
                     break;
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";
-                    echo "<a href='index.php?view_category=result-control&type=edit&action=reset'>Ergebnisse zur&uuml;cksetzen</a>";
+                    echo "<a href='index.php?view_category=results&type=edit&action=reset'>Ergebnisse zur&uuml;cksetzen</a>";
                     include_once '../../results.php';
                     break;
                 case "survey-control":
@@ -82,7 +82,7 @@ function getAdminView($type, $category, $action, $item) {
                     break;
                 case "user-control":
                     echo "<h2>Benutzerverwaltung</h2>";
-                    echo "<a href='index.php?view_category=user-control&type=edit&action=new'>Neue Benutzer</a>";
+                    echo "<a href='index.php?view_category=user-control&type=edit&action=new'>Neuer Benutzer</a>&nbsp;<a href='index.php?view_category=user-control&type=edit&action=generate'>Benutzer generieren</a>";
                     echo "<table>";
                     echo "<tr>";
                     echo "<th>Benutzername</th>";
@@ -153,11 +153,10 @@ function getAdminView($type, $category, $action, $item) {
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";
                     switch ($action) {
-                        case "new":
-                            break;
-                        case "change":
-                            break;
                         case "reset":
+                            echo "<h3>Ergebnisse zur&uuml;cksetzen</h3>";
+                            displayMessage('delete','del-answers');
+                            echo "<p><a href='data.php?type=results&action=reset'>Wirklich zur&uuml;cksetzen</a>&nbsp;<a href='index.php?view_category=results'>Nicht zur&uuml;cksetzen</a></p>";
                             break;
                         }
                     break;
@@ -178,6 +177,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "<form method='post' action='data.php'>";
                             echo "<input type='hidden' name='type' value='question'>";
                             echo "<input type='hidden' name='action' value='change'>";
+                            echo "<input type='hidden' name='item' value='". $item ."'>";
                             echo "<p><input type='Text' name='changequestion' value='". getQuestionText($item) ."' size='100'></p>";
                             echo "<p><input type='submit'></p>";
                             echo "</form>";
@@ -217,6 +217,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "<form method='post' action='data.php'>";
                             echo "<input type='hidden' name='type' value='user'>";
                             echo "<input type='hidden' name='action' value='change'>";
+                            echo "<input type='hidden' name='item' value='". $item ."'>";
                             echo "<p>Benutzername: <input type='Text' name='username' value='". getUserName($item) ."' size='50'></p>";
                             echo "<p>Passwort: <input type='Password' name='password' size='50'></p>";
                             echo "<p>Rolle: <select name='role' size='1'>";
@@ -248,6 +249,21 @@ function getAdminView($type, $category, $action, $item) {
                             displayMessage('delete','del-user');
                             echo "<p><a href='data.php?type=user&action=delete&item=". $item ."'>Wirklich L&ouml;schen</a>&nbsp;<a href='index.php?view_category=user-control'>Nicht L&ouml;schen</a></p>";
                             break;
+                        case "generate":
+                            echo "<h3>Benutzer generieren</h3>";
+                            echo "<form method='post' action='data.php'>";
+                            echo "<input type='hidden' name='type' value='user'>";
+                            echo "<input type='hidden' name='action' value='generate'>";
+                            echo "Menge: <input type='Text' name='amount'>";
+                            echo "<p>Gruppe: <select name='group' size='1'>";
+                            $group = getGroupList();
+                            for ($i = 0; $i < sizeof($group); $i++) {
+                                echo "<option value='". $group[$i]['idask_group'] ."'>". $group[$i]['name'] ."</option>";
+                            }
+                            echo "</select></p>";
+                            echo "<p><input type='submit'></p>";
+                            echo "</form>";
+                            break;
                         }
                     break;
                 case "group-control":
@@ -267,6 +283,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "<form method='post' action='data.php'>";
                             echo "<input type='hidden' name='type' value='group'>";
                             echo "<input type='hidden' name='action' value='change'>";
+                            echo "<input type='hidden' name='item' value='". $item ."'>";
                             echo "<p><input type='Text' name='changedgroup' value='". getGroupName($item) ."' size='50'></p>";
                             echo "<p><input type='submit'></p>";
                             echo "</form>";
