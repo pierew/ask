@@ -55,6 +55,7 @@ function getAdminView($type, $category, $action, $item) {
         case "content":
             switch ($category) {
                 case "survey":
+                    
                     break;
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";
