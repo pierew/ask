@@ -27,3 +27,7 @@ function getResultOfGroup($groupname) {
 function resetResults() {
     queryDB("DELETE * FROM ask_result;");
 }
+
+function addResult($qid,$uid,$answer) {
+    queryDB("INSERT INTO ask_result (ask_question_idask_question,ask_user_idask_user,answer) VALUES($qid,$uid,$answer)");
+}

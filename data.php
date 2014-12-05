@@ -52,6 +52,7 @@ if (isset($_GET['type'])) {
                     resetResults();
                     echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=results">';
                     break;
+                    
             }
             break;
     }
@@ -64,7 +65,11 @@ if (isset($_POST['type'])) {
     switch ($type) {
         case "survey":
             switch ($action) {
-                case "":
+                case "transmit":
+                    $question = getQuestionList();
+                    for ($i = 0; $i <= sizeof($question); $i++) {
+                        addResult($question[$i]['idask_question'],getUserID($_SESSION['username']),$_POST[$question[$i]['idask_question']]);
+                    }
                     break;
             }
             break;
@@ -123,5 +128,3 @@ if (isset($_POST['type'])) {
     
     }
 }
-
-?>

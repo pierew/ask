@@ -36,6 +36,7 @@ $db_connection = @new mysqli($mysqlhost, $mysqluser, $mysqlpasswd, $mysqldb, $my
     }
 $mysqlversion = $db_connection->server_version;
 function queryDB($SQL) {
+    global $db_connection;
     $result = $db_connection->query($SQL, MYSQLI_USE_RESULT);
     return $result;
 }

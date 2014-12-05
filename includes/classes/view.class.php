@@ -55,7 +55,20 @@ function getAdminView($type, $category, $action, $item) {
         case "content":
             switch ($category) {
                 case "survey":
-                    
+                    echo "<h2>Umfrage durchf&uuml;hren</h2>";
+                    echo "<form action='data.php' method='post'>";
+                    echo "<input type='hidden' name='type' value='survey'>";
+                    echo "<input type='hidden' name='action' value='transmit'>";
+                    $question = getQuestionList();
+                    for ($i = 0; $i < sizeof($question); $i++) {
+                        echo "<p>".$question[$i]['text']."<br> Ich stimme nicht zu ";
+                        for ($j = 1; $j <= 10; $j++) {
+                            echo "<input type='radio' name='". $question[$i]['idask_question'] ."' value='". $j ."'>". $j. " - ";    
+                        }
+                        echo " Ich stimme vollkommen zu </p>";
+                    }
+                    echo "<input type='submit'>";
+                    echo "<form>";
                     break;
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";

@@ -77,6 +77,11 @@ function getRoleID($rolename) {
     return $result['idask_roles'];
 }
 
+function getUserID($username) {
+    $result = queryDB("SELECT idask_user FROM ask_user WHERE username='$username';");
+    return $result['idask_user'];
+}
+
 function getRoleName($rid) {
     $result = queryDB("SELECT name FROM ask_roles WHERE idask_roles='$rid';");
     return $result['name'];
