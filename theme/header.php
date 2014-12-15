@@ -32,6 +32,15 @@ if(isset($_GET['access_control'])) {
         logout();
     }
 }
-getView("nav","$role","$category","$action","$item"); 
+echo "<div id='header'>";
+getView("nav","$role","$category","$action","$item");
+if (isset($_GET['message_type']) && isset($_GET['message_reason'])) {
+$msgtype = $_GET['message_type'];
+$msgreason = $_GET['message_reason'];
+echo "<div id='msgbox'>";
+displayMessage($msgtype,$msgreason);
+echo "</div>";
+}
+echo "</div>";
 
 

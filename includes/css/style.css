@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 html {
-    margin: 0 0 0 0;
+    margin: 0px 0px 0px 0px;
+    padding:  0px 0px 0px 0px;
     background-color: #306793;
     
 }
@@ -69,15 +70,20 @@ body {
     padding-bottom: 5px;
     color: white;
 }
+#header {
+    position: relative;
+    width: 100%;
+    top: 0px;
+}
 #nav {
-    list-style-type: none;
+    margin-top: 0px;
     padding-left: 5px;
     background-color: #3d94ff;
     border-top-color: #1d00ff;
     border-top-style: solid;
     border-top-width: 5px;
-    position:fixed;
-    top:0px;
+    position: relative;
+    
     width: 100%;
     
 }
@@ -88,6 +94,7 @@ body {
     padding-right: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 0px;
 }
 #nav li:hover {
     background-color: #3ab0ff;
@@ -99,14 +106,16 @@ body {
 
 #msgbox {
     background-color: lightblue;
+    margin-top: -16px;
     padding: 5px;
-    margin-top: 45px;
+    width: 100%;
     text-align: center;
+    position: relative;
 }
 #content {
     padding-left: 25px;
-    margin-top: 20px;
     color: white;
+    position: relative;
 }
 #footer {
     padding: 1px;
