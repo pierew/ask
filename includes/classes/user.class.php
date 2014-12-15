@@ -60,15 +60,31 @@ function changeGroup($uid,$group) {
 }
 
 function addUser($username,$password,$roleid,$groupid) {
-    queryDB('INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ("$username","$password","$roleid","$groupid");');
+    queryDB("INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ('$username','$password','$roleid','$groupid');");
 }
 
 function autoCreateUser($amount,$gid) {
     $group = getGroupName($gid);
-    for ($i = 1;$i == $amount;$i++) {
-        $uidname = $group. '_' . (rand()*time());
+    $array = array();
+    for ($i = 1;$i <= $amount;$i++) {
+        $un = rand()*time();
+        $username = $group. '_' .$un;
         $password = md5(generate_password());
-        addUser($uidname,$password,'3',$gid);
+        addUser($username,$password,"2",$gid);
+        array_push($array,array($username,$password));
+    }
+    return $array;
+}
+
+function getMultiUserPrintView($array) {
+    foreach($array as $item) {
+    echo "<p>";
+    echo "Dein Benutzename: ". $item[0];echo "</p>";
+    echo "<p>";
+    echo "Dein Passwort:".$item[1];
+    echo "</p>";
+    echo "<p>Hinweis: Dieser Schl&uuml;ssel verf&auml;llt, nach dem durchf&uuml;hren der Umfrage, er kann jederzeit vom Administrator reaktiviert werden</p>";
+    echo "<hr>";
     }
 }
 

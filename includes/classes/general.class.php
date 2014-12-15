@@ -14,10 +14,6 @@ function getDeviation($resultArray) {
     
 }
 
-function cleanSting($string) {
-    
-}
-
 function getShortcode($string) {
     // $string = cleanSting($string);
     $result = queryDB("SELECT text FROM ask_shortcodes WHERE name = '$string';");

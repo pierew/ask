@@ -21,7 +21,7 @@ function getView($type, $role, $category, $action, $item) {
 function getUserView($type, $category) {
     switch($type) {
         case "nav":
-            echo "<ul>";
+            echo "<ul id='nav'>";
             echo "<li><a href='index.php'>Startseite</a></li>";
             echo "<li><a href='index.php?view_category=survey'>Umfrage durchführen</a></li>";
             echo "<li><a href='index.php?access_control=logout'>Logout</a></li>";
@@ -30,8 +30,15 @@ function getUserView($type, $category) {
         case "content":
             switch ($category) {
                 default:
+                    echo "<h2>Benutzerbereich</h2>";
+                    echo "<p>Herzlich Willkommen im Benutzerbereich</p>";
+                    echo "<p>Wir w&uuml;nschen ihnen Viel Spa&szlig; mit der Umfrage</p>";
                     break;
                 case "survey":
+                    genSurveyView();
+                    break;
+                case "successfull-survey":
+                    genSurveyViewSuccess();
                     break;
             }
             break;
@@ -41,7 +48,7 @@ function getUserView($type, $category) {
 function getAdminView($type, $category, $action, $item) {
     switch($type) {
         case "nav":
-            echo "<ul>";
+            echo "<ul id='nav'>";
             echo "<li><a href='index.php'>Startseite</a></li>";
             echo "<li><a href='index.php?view_category=survey'>Umfrage durchf&uuml;hren</a></li>";
             echo "<li><a href='index.php?view_category=results'>Ergebnisverwaltung</a></li>";
@@ -55,20 +62,10 @@ function getAdminView($type, $category, $action, $item) {
         case "content":
             switch ($category) {
                 case "survey":
-                    echo "<h2>Umfrage durchf&uuml;hren</h2>";
-                    echo "<form action='data.php' method='post'>";
-                    echo "<input type='hidden' name='type' value='survey'>";
-                    echo "<input type='hidden' name='action' value='transmit'>";
-                    $question = getQuestionList();
-                    for ($i = 0; $i < sizeof($question); $i++) {
-                        echo "<p>".$question[$i]['text']."<br> Ich stimme nicht zu ";
-                        for ($j = 1; $j <= 10; $j++) {
-                            echo "<input type='radio' name='". $question[$i]['idask_question'] ."' value='". $j ."'>". $j. " - ";    
-                        }
-                        echo " Ich stimme vollkommen zu </p>";
-                    }
-                    echo "<input type='submit'>";
-                    echo "<form>";
+                    genSurveyView();
+                    break;
+                case "successfull-survey":
+                    genSurveyViewSuccess();
                     break;
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";
@@ -138,7 +135,7 @@ function getAdminView($type, $category, $action, $item) {
                         echo "<td>". $group[$i]['idask_group'] ."</td>";
                         echo "<td>". $group[$i]['name'] ."</td>";
                         if ($group[$i]['name'] != "system") {
-                        echo "<td><a href='index.php?view_category=group-control&type=edit&action=change&item=". $group[$i]['idask_group'] ."'>&Auml;ndern</a>&nbsp;<a href='index.php?view_category=group-control&type=edit&action=delete&item=". $group[$i]['idask_group'] ."'>L&ouml;schen</a></td>";
+                        echo "<td><a href='index.php?view_category=group-control&type=edit&action=change&item=". $group[$i]['idask_group'] ."'>&Auml;ndern</a>&nbsp;<a href='index.php?view_category=group-control&type=edit&action=delete&item=". $group[$i]['idask_group'] ."'>L&ouml;schen</a>&nbsp;<a href='index.php?view_category=group-control&type=edit&action=reactivate&item=". $group[$i]['idask_group'] ."'>Reaktivieren</a></td>";
                         }
                         echo "</tr>";
                     }
@@ -277,6 +274,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "</select></p>";
                             echo "<p><input type='submit'></p>";
                             echo "</form>";
+                            echo "<p>Hinweis: Nach dem klicken auf Senden, wird die Druckansicht ge&ouml;ffnet. Diese kann nur gleich eingesehen werden, da die Passw&ouml;rter verschl&uuml;sselt gespeichert werden, und so nicht mehr im Nachhinein vom System gelesen werden k&ouml;nnen.</p>";
                             break;
                         }
                     break;
@@ -306,6 +304,10 @@ function getAdminView($type, $category, $action, $item) {
                             echo "<h3>Gruppe l&ouml;schen</h3>";
                             displayMessage('delete','del-group');
                             echo "<p><a href='data.php?type=group&action=delete&item=". $item ."'>Wirklich L&ouml;schen</a>&nbsp;<a href='index.php?view_category=group-control'>Nicht L&ouml;schen</a></p>";
+                            break;
+                        case "reactivate":
+                            reactivateGroup($item);
+                            echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=group-control">';
                             break;
                     }
                     break;

@@ -31,3 +31,9 @@ function resetResults() {
 function addResult($qid,$uid,$answer) {
     queryDB("INSERT INTO ask_result (ask_question_idask_question,ask_user_idask_user,answer) VALUES($qid,$uid,$answer)");
 }
+
+function genSurveyViewSuccess() {
+    echo "<h2>Umfrage erfolgreich abgeschlossen</h2>";
+    echo "<p>Du hast die Umfrage erfolgreich abgeschlossen, du wirst nun in 30 Sekunden automatisch ausgeloggt.</p>";
+    echo '<meta http-equiv="refresh" content="30; URL=index.php?access_control=logout">';
+}

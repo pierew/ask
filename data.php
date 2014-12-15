@@ -70,6 +70,10 @@ if (isset($_POST['type'])) {
                     for ($i = 0; $i <= sizeof($question); $i++) {
                         addResult($question[$i]['idask_question'],getUserID($_SESSION['username']),$_POST[$question[$i]['idask_question']]);
                     }
+                    if ($_SESSION['role'] == "user") {
+                        queryDB("UPDATE ask_user SET status=0 WHERE username=".$_SESSION['username'].";");
+                    }
+                    echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=successfull-survey">';
                     break;
             }
             break;
@@ -99,7 +103,7 @@ if (isset($_POST['type'])) {
                     echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=user-control&message_type=change&message_reason=successfull-user">';
                     break;
                 case "generate":
-                    autoCreateUser($_POST['amount'],$_POST['group']);
+                    getMultiUserPrintView(autoCreateUser($_POST['amount'],$_POST['group']));
                     echo '<meta http-equiv="refresh" content="0; URL=index.php?view_category=user-control">';
                     break;
             }

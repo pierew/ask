@@ -14,7 +14,7 @@ function displayMessage($type,$reason) {
                 case "password":
                     echo "Dein Passwort ist nicht korrekt.";
                     break;
-                case "nologin":
+                case "notlogin":
                     echo "Sie sind nicht eingeloggt.";
                     break;
                 case "logout":

@@ -30,8 +30,9 @@ function setGroupName($gid,$newgroupname) {
     queryDB("UPDATE ask_group SET name='$newgroupname' WHERE idask_group='$gid'");
 }
 
-function deleteGroup($groupname) {
-    queryDB("DELETE FROM ask_group WHERE name='$groupname';");
+function deleteGroup($gid) {
+    queryDB("DELETE FROM ask_user WHERE ask_group_idask_group='$gid'");
+    queryDB("DELETE FROM ask_group WHERE idask_group='$gid';");
 }
 
 function addGroup($groupname) {
@@ -46,4 +47,8 @@ function getGroupID($groupname) {
 function getGroupName($gid) {
     $result = queryDB("SELECT name FROM ask_group WHERE idask_group='$gid';");
     return $result['name'];
+}
+
+function reactivateGroup($gid) {
+    queryDB("UPDATE ask_user SET status='1' WHERE ask_group_idask_group='$gid'");
 }
