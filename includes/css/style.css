@@ -5,6 +5,9 @@ html {
     background-color: #306793;
     
 }
+a {
+    color: white;
+}
 body {
     width: 100%;
     margin: 0px 0px 0px 0px;

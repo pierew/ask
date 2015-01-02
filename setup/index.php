@@ -5,6 +5,10 @@
     </head>
     <body>
         <h1>Installationskript - @$k</h1>
+        <p>Bitte stellen sie sicher das alle Dateien im Besitz des Webserver Dienste Kontos ist.<br>
+        Unter Linux Systemen ist dies bei SSH Zugriff mit "chown -R apache Pfad zum Hauptordner/*" machbar,<br>
+        Auf anderen Systemen die Ordner- und Datei-Rechte "774" erteilen.
+        </p>
         <p>
             <h2>Anforderungen</h2>
             <table>

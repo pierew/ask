@@ -19,4 +19,3 @@ CREATE TABLE IF NOT EXISTS `ask_database`.`ask_result` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-

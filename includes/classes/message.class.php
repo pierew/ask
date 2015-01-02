@@ -10,6 +10,7 @@
 function displayMessage($type,$reason) {
     switch ($type) {
         case "login":
+            echo "Anmeldung: ";
             switch ($reason) {
                 case "password":
                     echo "Dein Passwort ist nicht korrekt.";
@@ -29,6 +30,7 @@ function displayMessage($type,$reason) {
             } 
             break;
         case "delete":
+            echo "Entfernt: ";
             switch ($reason) {
                 case "del-question":
                     echo "Wenn sie diese These l&ouml;schen, werden alle damit verbundenen Antworten ebenfalls gel&ouml;scht, wollen sie das wirklich ?";
@@ -45,6 +47,7 @@ function displayMessage($type,$reason) {
             
             break;
         case "add":
+            echo "Hinzugef&uuml;gt: ";
             switch ($reason) {
                 case "successfull-user":
                     echo "Der Benutzer wurde erfolgreich Hinzugef&uuml;gt";
@@ -61,6 +64,7 @@ function displayMessage($type,$reason) {
             
             break;
         case "change":
+            echo "&Auml;nderung: ";
             switch ($reason) {
                 case "successfull-user":
                     echo "Der Benutzer wurde erfolgreich ge&auml;ndert";
@@ -71,6 +75,14 @@ function displayMessage($type,$reason) {
                 case "successfull-question":
                     echo "Der These wurde erfolgreich ge&auml;ndert";
                     break;
+            }
+        case "notice":
+            echo "Notiz: ";
+            switch ($reason) {
+                case "setupfolder":
+                    echo "Der Setup Ordner sollte aus Sicherheitsgr&uuml;nden unbedingt entfernt werden";
+                    break;
+                
             }
             break;
     }

@@ -17,31 +17,31 @@ function checkUserLogin($user,$password) {
         $_SESSION['username'] = $user;
         $_SESSION['role'] = getRoleName($result['ask_roles_idask_roles']);
         $_SESSION['group'] = getGroupName($result['ask_group_idask_group']);
-        echo '<meta http-equiv="refresh" content="0; URL=/index.php?message_type=login&message_reason=successfull">';
+        echo '<meta http-equiv="refresh" content="0; URL=index.php?message_type=login&message_reason=successfull">';
         } else {
             $_SESSION['login'] = 'false';
             session_destroy();
-            echo '<meta http-equiv="refresh" content="0; URL=/login.php?message_type=login&message_reason=deactivate">';
+            echo '<meta http-equiv="refresh" content="0; URL=login.php?message_type=login&message_reason=deactivate">';
         }
     } else {
         $_SESSION['login'] = 'false';
         session_destroy();
-        echo '<meta http-equiv="refresh" content="0; URL=/login.php?message_type=login&message_reason=password">';
+        echo '<meta http-equiv="refresh" content="0; URL=login.php?message_type=login&message_reason=password">';
     }
 }
 
 function checkLogin() {
     if (!isset($_SESSION['login'])) {
-        echo '<meta http-equiv="refresh" content="0; URL=/login.php?message_type=login&message_reason=notlogin">';
+        echo '<meta http-equiv="refresh" content="0; URL=login.php?message_type=login&message_reason=notlogin">';
     }
     if ($_SESSION['login'] == 'false') {
-        echo '<meta http-equiv="refresh" content="0; URL=/login.php?message_type=login&message_reason=notlogin">';
+        echo '<meta http-equiv="refresh" content="0; URL=login.php?message_type=login&message_reason=notlogin">';
     }
 }
 
 function logout() {
         $_SESSION['login'] = 'false';
         session_destroy();
-        echo '<meta http-equiv="refresh" content="0; URL=/login.php?message_type=login&message_reason=logout">';
+        echo '<meta http-equiv="refresh" content="0; URL=login.php?message_type=login&message_reason=logout">';
     
 }

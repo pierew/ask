@@ -22,19 +22,19 @@ $ask_question = fopen($file_question, "r") or die("Datenbankkonfigurationsdatei 
 $ask_user = fopen($file_user, "r") or die("Datenbankkonfigurationsdatei nicht gefunden!");
 $ask_result = fopen($file_result, "r") or die("Datenbankkonfigurationsdatei nicht gefunden!");
 
-$sql_ask_shortcodes = fread($ask_shortcodes,filesize($file_shortcodes));
-$sql_ask_group = fread($ask_group,filesize($file_group));
-$sql_ask_roles = fread($ask_roles,filesize($file_roles));
-$sql_ask_question = fread($ask_question,filesize($file_question));
-$sql_ask_user = fread($ask_user,filesize($file_user));
-$sql_ask_result = fread($ask_result,filesize($file_result));
+$sql_ask_shortcodes = str_replace("ask_database",$mysqldb,fread($ask_shortcodes,filesize($file_shortcodes)));
+$sql_ask_group = str_replace("ask_database",$mysqldb,fread($ask_group,filesize($file_group)));
+$sql_ask_roles = str_replace("ask_database",$mysqldb,fread($ask_roles,filesize($file_roles)));
+$sql_ask_question = str_replace("ask_database",$mysqldb,fread($ask_question,filesize($file_question)));
+$sql_ask_user = str_replace("ask_database",$mysqldb,fread($ask_user,filesize($file_user)));
+$sql_ask_result = str_replace("ask_database",$mysqldb,fread($ask_result,filesize($file_result)));
 
-
-$db_connection = @new mysqli($mysqlhost, $mysqluser, $mysqlpasswd, $mysqldb, $mysqlport);
+$db_connection = new mysqli($mysqlhost, $mysqluser, $mysqlpasswd, $mysqldb, $mysqlport);
     if ($db_connection->connect_error) {
         die('Connect Error: ' . $db_connection->connect_error);
     }
 $mysqlversion = $db_connection->server_version;
+
 function queryDB($SQL) {
     global $db_connection;
     $result = $db_connection->query($SQL, MYSQLI_USE_RESULT);
@@ -42,12 +42,43 @@ function queryDB($SQL) {
 }
 function setupAction($action,$SQL) {
     $result = queryDB($SQL);
-    echo "<tr>"
-    echo "<td>". $action ."</td>";
-    echo "<td>". if(!$result) {echo "Fehlgeschlagen"} else {echo "Erfolgreich"} ."</td>";
+    echo "<tr>";
+    echo "<td>". $action . "</td>";
+    echo "<td>";
+    if(!$result) {
+        echo "Fehlgeschlagen";
+    } else {
+        echo "Erfolgreich";
+    }
+    echo "</td>";
     echo "</tr>";
 }
+function readData() {
+    global $mysqldb;
+    $sql_ask_data = explode("\n",str_replace("ask_database",$mysqldb,file_get_contents("./sql/data.sql")));
+    $result = null;
+    foreach($sql_ask_data as $SQL){
+        $result = queryDB($SQL);
+        }
+    echo "<tr>";
+        echo "<td>Importiere Standardkonfiguration</td>";
+        echo "<td>";
+        if(!$result) {
+            echo "Fehlgeschlagen";
+        } else {
+            echo "Erfolgreich";
+        }
+        echo "</td>";
+        echo "</tr>";
+}
+
 function createConfigFile(){
+    global $mysqldb;
+    global $mysqlhost;
+    global $mysqlpasswd;
+    global $mysqlport;
+    global $mysqluser;
+    
     $configfile = fopen("../includes/settings.php","a");
     fwrite($configfile,'<?php'. PHP_EOL);
     fwrite($configfile,'$DB_host = "'.$mysqlhost.'";'. PHP_EOL);
@@ -56,7 +87,7 @@ function createConfigFile(){
     fwrite($configfile,'$DB_password = "'.$mysqlpasswd.'";'. PHP_EOL);
     fwrite($configfile,'$DB_name = "'.$mysqldb.'";'. PHP_EOL);
     fclose("../includes/settings.php");
-    echo "<tr>"
+    echo "<tr>";
     echo "<td>Erstelle Konfigurationsdatei</td>";
     echo "<td></td>";
     echo "</tr>";
@@ -82,7 +113,15 @@ function createConfigFile(){
                 </tr>
                 <tr>
                     <td>MySQL 5.6 oder h&ouml;her | <?php echo $mysqlversion; ?></td>
-                    <td><?php if ($mysqlversion contains "5.6") {echo "True";} else {echo "False"; $run = false;} ?> </td>
+                    <td> <?php 
+                    if (preg_match('/56/',$mysqlversion)) {
+                        echo "True";
+                        
+                    } else {
+                        echo "False (We Try it but maybe it fails)"; 
+                        $run = false;
+                        
+                    } ?> </td>
                 </tr>
             </table>
         </p>
@@ -100,11 +139,14 @@ function createConfigFile(){
             setupAction("Erstelle Tabelle - ask_question",$sql_ask_question);
             setupAction("Erstelle Tabelle - ask_user",$sql_ask_user);
             setupAction("Erstelle Tabelle - ask_result",$sql_ask_result);
+            readData();
             setupAction("Erstelle Administratorkonto","INSERT INTO ask_user (username,password,ask_group_idask_group,ask_roles_idask_roles,status) VALUES ('$adminuser','$adminpasswd','1','1','1')");
             setupAction("Konfiguriere Titel","INSERT INTO ask_shortcodes (name,text) VALUES('title','$title')");
+            
             ?>
         </table>
         </p>
+        <p>Bitte l&ouml;schen sie das Setup Verzeichnis<p>
     </body>
 </html>
 <?php

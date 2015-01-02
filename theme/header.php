@@ -1,7 +1,7 @@
 <html>
     <head>
     <title><?php echo getShortcode("title"); ?></title>
-    <link rel="stylesheet" type="text/css" href="../includes/css/style.css">
+    <link rel="stylesheet" type="text/css" href="includes/css/style.css">
     </head>
     <body>
 <?php 
@@ -34,12 +34,22 @@ if(isset($_GET['access_control'])) {
 }
 echo "<div id='header'>";
 getView("nav","$role","$category","$action","$item");
-if (isset($_GET['message_type']) && isset($_GET['message_reason'])) {
-$msgtype = $_GET['message_type'];
-$msgreason = $_GET['message_reason'];
-echo "<div id='msgbox'>";
+
+if (file_exists(realpath(dirname(__FILE__) . '/..').'/setup/index.php')) {
+        $msgtype = "notice";
+        $msgreason = "setupfolder";
+        echo "<div id='msgbox'>";
 displayMessage($msgtype,$msgreason);
 echo "</div>";
+} else {
+    if (isset($_GET['message_type']) && isset($_GET['message_reason'])) {
+        $msgtype = $_GET['message_type'];
+        $msgreason = $_GET['message_reason'];
+
+        echo "<div id='msgbox'>";
+        displayMessage($msgtype,$msgreason);
+        echo "</div>";
+        }
 }
 echo "</div>";
 

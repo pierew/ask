@@ -1,6 +1,11 @@
 <?php
+$settings=__DIR__.'/../settings.php';
+if (file_exists($settings)) {
+    require_once $settings;
+} else {
+    echo '<meta http-equiv="refresh" content="0; URL=setup/index.php">';
+}
 
-require_once __DIR__.'/../settings.php';
 $db_connection;
 
 function initDB() {
