@@ -70,7 +70,8 @@ function getAdminView($type, $category, $action, $item) {
                 case "results": 
                     echo "<h2>Ergebnisverwaltung</h2>";
                     echo "<a href='index.php?view_category=results&type=edit&action=reset'>Ergebnisse zur&uuml;cksetzen</a>";
-                    include_once '../../results.php';
+                    echo "<hr>";
+                    include_once 'results.php';
                     break;
                 case "survey-control":
                     echo "<h2>Thesenverwaltung</h2>";

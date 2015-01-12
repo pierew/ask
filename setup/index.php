@@ -7,7 +7,7 @@
         <h1>Installationskript - @$k</h1>
         <p>Bitte stellen sie sicher das alle Dateien im Besitz des Webserver Dienste Kontos ist.<br>
         Unter Linux Systemen ist dies bei SSH Zugriff mit "chown -R apache Pfad zum Hauptordner/*" machbar,<br>
-        Auf anderen Systemen die Ordner- und Datei-Rechte "774" erteilen.
+        Auf anderen Systemen die Ordner- und Datei-Rechte "777" f&uuml;r die Ordner Setup und Includes erteilen, danach k&ouml;nnen diese Rechte ihren W&uuml;nschen angepasst werden
         </p>
         <p>
             <h2>Anforderungen</h2>
