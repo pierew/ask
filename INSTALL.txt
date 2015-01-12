@@ -1,0 +1,9 @@
+Assistenten unterstützte Installationsmethode:
+1. Entpacken sie das Zip Archiv in den Vorgesehenen Ordner.
+2. Öffnen sie die Adresse in der sie das System entpackt haben und folgen sie den dortigen Anweisungen
+
+Alternative Installationsmethode:
+1. Entpacken sie das Zip Archiv in den Vorgesehenen Ordner.
+2. Öffnen sie alle Dateien in "setup/sql" und Ersetzen jeden Eintrag namens "ask_database"
+mit dem Datenbanknamen den sie benutzen möchten und importieren sie diese SQL Dateien in ihre Datenbank
+3. Duplizieren sie die Datei "includes/settings.php.sample" nach "includes/settings.php" und Definieren sie die Variablen nach ihren Datenbankkonfigurationen.
