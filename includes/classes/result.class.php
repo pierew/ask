@@ -21,7 +21,11 @@ function getResultOfUser($username) {
 function getResultOfGroup($groupname) {
     $gid = getGroupID($groupname);
     $result = queryDB("SELECT * FROM ask_result JOIN ask_user ON idask_user=ask_user_idask_user WHERE ask_user.ask_group_idask_group='$gid';");
-    return $result;
+    $data = array();
+    while($row = mysqli_fetch_assoc($result)){
+    array_push($data, $row);
+    }
+    return $data;
 }
 
 function resetResults() {
