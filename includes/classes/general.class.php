@@ -6,16 +6,7 @@
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
-function getMean($resultArray) {
-    
-}
-
-function getDeviation($resultArray) {
-    
-}
-
 function getShortcode($string) {
-    // $string = cleanSting($string);
     $result = queryDB("SELECT text FROM ask_shortcodes WHERE name = '$string';");
     return $result['text'];
 }
