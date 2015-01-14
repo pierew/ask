@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+html {
+    margin: 0px 0px 0px 0px;
+    padding:  0px 0px 0px 0px;
+    background-color: #306793;
+    
+}
+a {
+    color: white;
+}
+body {
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+}
+
+#header {
+    position: relative;
+    width: 100%;
+    top: 0px;
+}
+#login {
+   margin-left: 35%;
+   margin-right: 35%;
+   margin-top: 150px;
+   text-align: center;
+   box-shadow: 0px 0px 20px 10px #e8e8e8;
+}
+#login h2 {
+    background-color: #3ab0ff;
+    padding: 5px;
+}
+#login .login_box {
+    margin-top: -20px;
+    background-color: #3d94ff;
+    border-top-color: #1d00ff;
+    border-top-style: solid;
+    border-top-width: 5px;
+    padding-bottom: 5px;
+}
+
+#login input[type="text"],input[type="password"] {
+    width:92%;
+  background:#fff;
+  margin-bottom:4%;
+  border:1px solid #ccc;
+  padding:4%;
+  font-family:'Open Sans',sans-serif;
+  font-size:95%;
+  color:#555;
+}
+#login input[type="submit"]{
+  width:100%;
+  background-color: #3ab0ff;
+  border:0;
+  padding:4%;
+  font-family:'Open Sans',sans-serif;
+  font-size:100%;
+  color:#fff;
+  cursor:pointer;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+}
+
+#login input[type="submit"]:hover{
+  background: blue;
+}
+#login .login_username-text {
+    color: white;
+}
+#login .login_password-text {
+    color: white;
+}
+.login_msgbox {
+    margin-top: -20px;
+    background-color: #3d94ff;
+    border-top-color: #1d00ff;
+    border-top-style: solid;
+    border-top-width: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+}
+#footer {
+    padding: 1px;
+    background-color: #3d94ff;
+    position:fixed;
+    bottom:0px;
+    width: 100%;
+}

@@ -14,7 +14,7 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 <html>
     <head>
         <title><?php echo getShortcode('title')." - Login"; ?></title>
-        <link rel="stylesheet" type="text/css" href="./includes/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./includes/css/login_style.css">
     </head>
     <body>
         <div id='login'>

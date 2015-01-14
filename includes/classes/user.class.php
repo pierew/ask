@@ -60,7 +60,7 @@ function changeGroup($uid,$group) {
 }
 
 function addUser($username,$password,$roleid,$groupid) {
-    queryDB("INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group) VALUES ('$username','$password','$roleid','$groupid');");
+    queryDB("INSERT INTO ask_user (username,password,ask_roles_idask_roles,ask_group_idask_group,status) VALUES ('$username','$password','$roleid','$groupid','1');");
 }
 
 function autoCreateUser($amount,$gid) {

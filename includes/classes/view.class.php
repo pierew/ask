@@ -23,7 +23,7 @@ function getUserView($type, $category) {
         case "nav":
             echo "<ul id='nav'>";
             echo "<li><a href='index.php'>Startseite</a></li>";
-            echo "<li><a href='index.php?view_category=survey'>Umfrage durchführen</a></li>";
+            echo "<li><a href='index.php?view_category=survey'>Umfrage durchf&uuml;hren</a></li>";
             echo "<li><a href='index.php?access_control=logout'>Logout</a></li>";
             echo "</ul>";
             break;
@@ -210,7 +210,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "<input type='hidden' name='type' value='user'>";
                             echo "<input type='hidden' name='action' value='new'>";
                             echo "<p>Benutzername: <input type='Text' name='username' size='50'></p>";
-                            echo "<p>Passwort: <input type='Password' name='password' size='50'></p>";
+                            echo "<p>Passwort: <input class='password_user' type='Password' name='password' size='50'></p>";
                             echo "<p>Rolle: <select name='role' size='1'>";
                             echo "<option value='". getRoleID("user") ."'>Benutzer</option>";
                             echo "<option value='". getRoleID("administrator") ."'>Administrator</option>";
