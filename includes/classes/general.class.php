@@ -11,9 +11,9 @@ function getShortcode($string) {
     return $result['text'];
 }
 
-function generate_password( $length = 8 ) {
-$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
-$password = substr( str_shuffle( $chars ), 0, $length );
+function generate_password() {
+$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+$password = substr(str_shuffle($chars), 0, 5);
 return $password;
 }
 

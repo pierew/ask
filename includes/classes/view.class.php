@@ -23,7 +23,9 @@ function getUserView($type, $category) {
         case "nav":
             echo "<ul id='nav'>";
             echo "<li><a href='index.php'>Startseite</a></li>";
-            echo "<li><a href='index.php?view_category=survey'>Umfrage durchf&uuml;hren</a></li>";
+            if (getUserStatus(getUserID($_SESSION['username'])) == 1) {
+               echo "<li><a href='index.php?view_category=survey'>Umfrage durchf&uuml;hren</a></li>"; 
+            }
             echo "<li><a href='index.php?access_control=logout'>Logout</a></li>";
             echo "</ul>";
             break;

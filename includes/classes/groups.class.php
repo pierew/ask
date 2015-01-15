@@ -31,7 +31,8 @@ function setGroupName($gid,$newgroupname) {
 }
 
 function deleteGroup($gid) {
-    queryDB("DELETE FROM ask_user WHERE ask_group_idask_group='$gid'");
+    queryDB("DELETE FROM ask_result WHERE ask_user_idask_user IN (SELECT idask_user FROM ask_user WHERE ask_group_idask_group='$gid');");
+    queryDB("DELETE FROM ask_user WHERE ask_group_idask_group='$gid';");
     queryDB("DELETE FROM ask_group WHERE idask_group='$gid';");
 }
 

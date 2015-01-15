@@ -29,6 +29,11 @@ function getUserRoleID($uid) {
     return $result['ask_roles_idask_roles'];
 }
 
+function getUserStatus($uid) {
+    $result = queryDB("SELECT status FROM ask_user WHERE idask_user = '$uid';");
+    return $result['status'];
+}
+
 function setPassword($uid,$password) {
     queryDB("UPDATE ask_user SET password='$password' WHERE idask_user='$uid';");
 }
@@ -46,6 +51,7 @@ function deactivateUser($uid) {
 }
 
 function deleteUser($uid) {
+    queryDB("DELETE FROM ask_result WHERE ask_user_idask_user='$uid';");
     queryDB("DELETE FROM ask_user WHERE idask_user='$uid';");
 }
 
@@ -68,9 +74,9 @@ function autoCreateUser($amount,$gid) {
     $array = array();
     for ($i = 1;$i <= $amount;$i++) {
         $un = rand()*time();
-        $username = $group. '_' .$un;
-        $password = md5(generate_password());
-        addUser($username,$password,"2",$gid);
+        $username = $group. '_' .substr($un,0,5);
+        $password = generate_password();
+        addUser($username,md5($password),"2",$gid);
         array_push($array,array($username,$password));
     }
     return $array;
@@ -81,7 +87,7 @@ function getMultiUserPrintView($array) {
     echo "<p>";
     echo "Dein Benutzename: ". $item[0];echo "</p>";
     echo "<p>";
-    echo "Dein Passwort:".$item[1];
+    echo "Dein Passwort: ".$item[1];
     echo "</p>";
     echo "<p>Hinweis: Dieser Schl&uuml;ssel verf&auml;llt, nach dem durchf&uuml;hren der Umfrage, er kann jederzeit vom Administrator reaktiviert werden</p>";
     echo "<hr>";
