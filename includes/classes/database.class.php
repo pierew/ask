@@ -24,8 +24,12 @@ function connectDB($host,$port,$user,$password,$db) {
 function queryDB($SQL) {
     initDB();
     global $db_connection;
-    $result = mysqli_fetch_assoc($db_connection->query($SQL, MYSQLI_USE_RESULT));
-    return $result;
+    $resultSet = $db_connection->query($SQL);
+    if (mysqli_num_rows($resultSet) != 0)
+    {
+       $result = mysqli_fetch_assoc($resultSet); 
+       return $result;
+    }
 }
 function queryDB_RAW($SQL) {
     initDB();

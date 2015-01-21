@@ -67,3 +67,113 @@ body {
     bottom:0px;
     width: 100%;
 }
+#background{
+    
+    margin-bottom: 2px;
+}
+#backgroundRect{
+    
+    position: relative;
+}
+
+#voted1{
+    
+    position: relative;
+    float: left;
+    margin-left: 3px;
+    margin-right: 1px;
+
+    
+}
+#voted2{
+    
+    position: relative;
+    float: left;
+    margin-left: 1px;
+
+    
+}
+#voted3{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+
+    
+}
+#voted4{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+    
+}
+#voted5{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#voted6{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#voted7{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#voted8{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#voted9{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#voted10{
+    
+    position: relative;
+    float: left;
+    margin-left: 2px;
+
+    
+}
+#yourChoiceArrow{
+    
+    margin-top:2px;
+    position: relative;
+    float: left;
+
+}
+
+
+h2{
+    
+    font-family: Arial;
+}
+#userInfo{
+  
+  font-family: Arial;
+  font-size: 22px;
+  position:relative;
+    
+}

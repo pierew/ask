@@ -271,7 +271,7 @@ function getAdminView($type, $category, $action, $item) {
                             echo "Menge: <input type='Text' name='amount'>";
                             echo "<p>Gruppe: <select name='group' size='1'>";
                             $group = getGroupList();
-                            for ($i = 0; $i < sizeof($group); $i++) {
+                            for ($i = 1; $i < sizeof($group); $i++) {
                                 echo "<option value='". $group[$i]['idask_group'] ."'>". $group[$i]['name'] ."</option>";
                             }
                             echo "</select></p>";

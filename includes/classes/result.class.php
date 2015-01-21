@@ -41,3 +41,11 @@ function genSurveyViewSuccess() {
     echo "<p>Du hast die Umfrage erfolgreich abgeschlossen, du wirst nun in 30 Sekunden automatisch ausgeloggt.</p>";
     echo '<meta http-equiv="refresh" content="30; URL=index.php?access_control=logout">';
 }
+
+/**
+* Include all Functions for Results.
+*
+* 
+*
+* @author     Piere Woehl <woehlpiere@googlemail.com>
+*/
