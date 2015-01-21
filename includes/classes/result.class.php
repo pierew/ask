@@ -9,18 +9,25 @@
 
 
 function getResultOfQuestion($qid) {
-    $result = queryDB("SELECT * FROM ask_result JOIN ask_question ON idask_question=ask_question_idask_question WHERE ask_question.idask_question='$qid';");
-    return $result;
+    $result = queryDB_RAW("SELECT * FROM ask_result JOIN ask_question ON idask_question=ask_question_idask_question WHERE ask_question.idask_question='$qid';");
+    $data = array();
+    while($row = mysqli_fetch_assoc($result)){
+    array_push($data, $row);
+    }
+    return $data;
 }
 
 function getResultOfUser($username) {
-    $result = queryDB("SELECT * FROM ask_result JOIN ask_user ON idask_user=ask_user_idask_user WHERE ask_user.username='$username';");
-    return $result;
+    $result = queryDB_RAW("SELECT ask_question_idask_question,answer FROM ask_result JOIN ask_user ON idask_user=ask_user_idask_user WHERE ask_user.username='".$username."';");
+    $data = array();
+    while($row = mysqli_fetch_assoc($result)){
+    array_push($data, $row);
+    }
+    return $data;
 }
 
-function getResultOfGroup($groupname) {
-    $gid = getGroupID($groupname);
-    $result = queryDB("SELECT * FROM ask_result JOIN ask_user ON idask_user=ask_user_idask_user WHERE ask_user.ask_group_idask_group='$gid';");
+function getResultOfGroup($gid) {
+    $result = queryDB_RAW("SELECT * FROM ask_result JOIN ask_user ON idask_user=ask_user_idask_user WHERE ask_user.ask_group_idask_group='$gid';");
     $data = array();
     while($row = mysqli_fetch_assoc($result)){
     array_push($data, $row);
@@ -29,7 +36,7 @@ function getResultOfGroup($groupname) {
 }
 
 function resetResults() {
-    queryDB("DELETE * FROM ask_result;");
+    queryDB("TRUNCATE TABLE ask_result;");
 }
 
 function addResult($qid,$uid,$answer) {

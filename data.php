@@ -67,7 +67,7 @@ if (isset($_POST['type'])) {
             switch ($action) {
                 case "transmit":
                     $question = getQuestionList();
-                    for ($i = 0; $i <= sizeof($question); $i++) {
+                    for ($i = 0; $i < sizeof($question); $i++) {
                         addResult($question[$i]['idask_question'],getUserID($_SESSION['username']),$_POST[$question[$i]['idask_question']]);
                     }
                     

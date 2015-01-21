@@ -1053,9 +1053,9 @@ echo $these;
         echo "<br><br>";
     ?>
     
-    Klick here for the next these.
-    <form>
-        <input type="submit" value="Nächste Antwort">
+    Klicken Sie hier um die nächste These anzuzeigen.
+    <form name="nextThese" action="index.php?view_category=results">
+        <input type="submit" value="Nächste Antwort" onclick="this.form.Ausgabe.value = document.lastModified">
     </form>
     
     
