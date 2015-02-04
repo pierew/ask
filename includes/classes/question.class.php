@@ -2,7 +2,7 @@
 /**
 * Include all functions for Questions
 *
-* 
+* Diese Questionklasse sorgt für die Thesenverwaltung
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

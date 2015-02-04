@@ -2,7 +2,7 @@
 /**
 * Includes all Functions that not in special Groups
 *
-* 
+* Generelle Funktionen die nicht in Verbindung mit den Hauptklassen stehen.
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

@@ -1,4 +1,11 @@
 <?php
+/**
+* Database Class
+*
+* Diese Datenbankklasse vereint alle Datenbankspezifischen Befehler und Wrapperklassen
+*
+* @author     Piere Woehl <woehlpiere@googlemail.com>
+*/
 $settings=__DIR__.'/../settings.php';
 if (file_exists($settings)) {
     require_once $settings;

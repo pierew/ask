@@ -2,7 +2,7 @@
 /**
 * Organize Message Display
 *
-* 
+* Diese Funktion sorgt für eine integrierte Fehler und Benachrichtigungsanzeige
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

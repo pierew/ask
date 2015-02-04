@@ -2,7 +2,7 @@
 /**
 * Include all functions for Login
 *
-* 
+* Die Loginklasse enthält Funktionen die sicherstellen ob der Benutzer authentifiziert ist.
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

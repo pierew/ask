@@ -2,7 +2,7 @@
 /**
 * Include all functions for the User & Roles
 *
-* 
+* Hier werden all Aufgaben die Benutzer betreffend durchgeführt
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

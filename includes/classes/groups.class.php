@@ -2,7 +2,7 @@
 /**
 * Include all functions for the Group Functionality
 *
-* 
+* Die Gruppenklasse enthält jede Funktion die die Gruppen betreffen.
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

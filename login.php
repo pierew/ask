@@ -2,7 +2,7 @@
 /**
 * Login File to do the login
 *
-* 
+* Diese Seite integriert den Login in die Seite
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

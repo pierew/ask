@@ -2,7 +2,7 @@
 /**
 * Process all DATA
 *
-* 
+* Diese Datenklasse verarbeitet alle Daten an einem zentralen Punkt und verteilt sie an die entsprechenden Klassen zur durchführung.
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

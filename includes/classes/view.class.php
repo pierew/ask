@@ -2,7 +2,7 @@
 /**
 * View Controller
 *
-* Controles the Output
+* Dieser View Controller sorgt für eine reibungslose Integration der verschiedenen Rollen und Ansicht-Kategorien
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

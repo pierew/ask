@@ -1,8 +1,8 @@
 <?php
 /**
-* Put all classes together
+* A Main Import Class
 *
-* Long description for class (if any)...
+* Diese Klassenimportdatei sorgt für den richtigen Import mit den richtigen Abhängigkeiten
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */

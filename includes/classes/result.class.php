@@ -2,7 +2,7 @@
 /**
 * Include all Functions for Results.
 *
-* 
+* Die Resultklasse bearbeitet alle Ergebnisorientierten Aufgaben.
 *
 * @author     Piere Woehl <woehlpiere@googlemail.com>
 */
