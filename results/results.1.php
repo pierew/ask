@@ -45,7 +45,7 @@ echo $these;
 </div>
 <div id=background>
 <!--Zeichnet den Hintergrund der oberen Box auf denen sich die oberen Balken befinden-->
-<canvas id="backgroundRect" width="1300" height="120" style="border:2px solid #000000;"></canvas>
+<canvas id="backgroundRect" width="1300" height="320" style="border:2px solid #000000;"></canvas>
   
     <script>
     //Die Variablen werden vergeben für die Canvas ID "backgroundRect"
@@ -54,18 +54,10 @@ echo $these;
 
       //Zeichnet das Rechteck
       context.beginPath();
-      context.rect(0, 0, 1300, 120);
+      context.rect(0, 0, 1300, 320);
       context.fillStyle = 'white';
       context.fill();
       
-      /*Zeichnet die Linie
-      context.lineWidth = 2;
-      context.strokeStyle = 'black';
-      context.beginPath();
-      context.moveTo(500, 0);
-      context.lineTo(500, 300);
-      context.stroke();
-      */
     </script>
     <!-- Dieses Erste Script ist für den Deutschen Balken -->
     <script>
